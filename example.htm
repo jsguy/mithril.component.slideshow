@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+    <script src="lib/mithril.js"></script>
+	<script src="mithril.component.slideshow.js"></script>
+	<script src="lib/mithril.sugartags.js"></script>
+	<script src="lib/mithril.bindings.js"></script>
+
+	<style>
+		.row {position: relative;}
+		#example {width: 100%;}
+	</style>
+
+	<style>
+		/* TODO: Clean this CSS up */
+		body {margin: 0; padding: 0; background: #111; height: 100%; }
+		.diy-slideshow{position: relative; display: block; overflow: hidden; }
+		figure{position: absolute; opacity: 0; transition: 1s opacity; }
+		figcaption{position: absolute; font-family: sans-serif; font-size: .8em; bottom: .75em; right: .35em; padding: .25em; color: #fff; background: rgba(0,0,0, .25); border-radius: 2px; }
+		figcaption a{color: #fff; }
+		figure.show{opacity: 1; position: static; transition: 1s opacity; }
+		figure img {width: 100%;}
+		.next,
+		.prev {color: #fff; position: absolute; background: rgba(0,0,0, .6); top: 50%; z-index: 1; font-size: 2em; margin-top: -.75em; opacity: .3; user-select: none; }
+		.next:hover,
+		.prev:hover{cursor: pointer; opacity: 1; }
+		.next{right: 0; padding: 10px 5px 15px 10px; border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+		.prev{left: 0; padding: 10px 10px 15px 5px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+		p{margin: 10px 20px; color: #fff; }
+
+		.dots {display: flex; align-items: center; justify-content: center;margin-top: -3.5rem;font-size: 1.5rem} 
+		.dot {color: #ccc; opacity: 0.3; margin: 0.1rem;}
+		.dot.current {opacity: 0.9;}
+
+	</style>
+
+</head>
+<body>
+
+<!-- Using this: https://codepen.io/leemark/pen/DLgbr as inspiration -->
+
+<div id="example"></div>
+	
+<script>
+var Demo = {
+	view: function(ctrl) {
+		return m.components.mSlideshow({id: "sliders", state: {
+			imgs: [
+				{
+					src: "http://themarklee.com/wp-content/uploads/2013/12/snowying.jpg" 
+				//	,caption: "\"Snowying\" by <a href=\"http://www.flickr.com/photos/fiddleoak/8511209344/\">fiddleoak</a>."
+				},
+				{
+					src: "http://themarklee.com/wp-content/uploads/2013/12/snowying.jpg"
+				//	,caption: "World"
+				}
+			],
+			auto: false
+		}});
+	}
+};
+//initialize
+m.mount(document.getElementById("example"), Demo);
+</script>
+
+</body>
+</html>
