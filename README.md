@@ -4,7 +4,7 @@ This creates a slideshow in mithril
 
 ## Install
 
-```javascript
+```bash
 npm install mithril.component.slideshow
 ```
 
@@ -12,7 +12,7 @@ npm install mithril.component.slideshow
 
 First include mithril.js, and the js and css files:
 
-```markup
+```html
 <script src="lib/mithril.js"></script>
 <script src="dist/mithril.component.slideshow.js"></script>
 <link rel="stylesheet" type="text/css" href="dist/mithril.component.slideshow.css">
