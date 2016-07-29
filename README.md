@@ -1,19 +1,37 @@
-# mithril MDL components
+# mithril slideshow component
 
-This creates [http://www.getmdl.io/](MDL) components for use with mithril.
+This creates a slideshow in mithril
 
-Use state to create different components, for example:
-
-```javascript
-m.components.mButton({text: "Hello"})
-```
-
-Is a "normal" coloured button, whereas this:
+## Install
 
 ```javascript
-m.components.mButton({state: {fab: true, colored: true}, text: "add"})
+npm install mithril.component.slideshow
 ```
 
-Is a "fab" (round) button with a plus symbol
+## Usage
 
-For further options, see [the MDL documentation](http://www.getmdl.io/components/index.html)
+First include mithril.js, and the js and css files:
+
+```markup
+&lt;script src="lib/mithril.js"&gt;&lt;/script&gt;
+&lt;script src="dist/mithril.component.slideshow.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="dist/mithril.component.slideshow.css"&gt;
+```
+
+Then in your view, simply initialise with the images you want to show, using the state:
+
+```javascript
+return m.components.mSlideshow({state: {
+	imgs: [
+		{src: "img/uboat.jpg"},
+		{src: "img/bridge.jpg"}
+	]
+}});
+```
+
+You can optionally set the following attributes:
+
+* **auto** - should we automatically advance, default is false
+* **time** - the amount of milliseconds the slideshow waits before advancing, default is 7000
+* **showButtons** - should we show the left/right buttons, default is true
+* **showDots** - should we show dots at the bottom, default is true

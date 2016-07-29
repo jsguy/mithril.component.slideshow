@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mithril slideshow component</title>
+
+    <script src="../lib/mithril.js"></script>
+	<script src="../src/mithril.component.slideshow.js"></script>
+	<script src="../lib/mithril.sugartags.js"></script>
+	<script src="../lib/mithril.bindings.js"></script>
+    <script src="../lib/touchit.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../dist/mithril.component.slideshow.css">
+
+	<style>
+		#example {width: 100%;}
+		body {margin: 0; padding: 0; background: #111; height: 100%; }
+		/* Make sure to set your height of the slideshow, % doesn't work. */
+		.mithril-slideshow figure{height: 30rem;}
+	</style>
+
+</head>
+<body>
+
+<!-- Using this: https://codepen.io/leemark/pen/DLgbr as inspiration -->
+
+<div id="example"></div>
+	
+<script>
+var Demo = {
+	view: function(ctrl) {
+		return m.components.mSlideshow({id: "sliders", state: {
+			imgs: [
+				{src: "img/uboat.jpg"},
+				{src: "img/bridge.jpg"}
+			]
+			// ,auto: true,
+			// showButtons: false,
+			// showDots: true
+		}});
+	}
+};
+//initialize
+m.mount(document.getElementById("example"), Demo);
+</script>
+
+</body>
+</html>

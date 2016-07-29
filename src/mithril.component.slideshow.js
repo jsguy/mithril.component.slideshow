@@ -6,26 +6,18 @@
 var mithrilSlideshowComponent = function(m){
 	m.components = m.components || {};
 
-	var mSlideshow = {
+	var def = function(value, defValue) {
+		return typeof value !== "undefined"? value: defValue;
+	},
+	mSlideshow = {
 		attrs: function(attrs) {
 			attrs = attrs || {};
 			attrs.state = attrs.state || {};
 
-			attrs.state.auto = typeof attrs.state.auto !== "undefined"? 
-				attrs.state.auto:
-				false;
-
-			attrs.state.showButtons = typeof attrs.state.showButtons !== "undefined"? 
-				attrs.state.showButtons:
-				true;
-
-			attrs.state.showDots = typeof attrs.state.showDots !== "undefined"? 
-				attrs.state.showDots:
-				true;
-
-			attrs.state.time = typeof attrs.state.time !== "undefined"?
-				attrs.state.time:
-				7000;
+			attrs.state.auto = def(attrs.state.auto, false);
+			attrs.state.showButtons = def(attrs.state.showButtons, true);
+			attrs.state.showDots = def(attrs.state.showDots, true);
+			attrs.state.time = def(attrs.state.time, 7000);
 
 			return attrs;
 		},
@@ -53,12 +45,13 @@ var mithrilSlideshowComponent = function(m){
 		},
 
 		controller: function(data){
-			attrs = mSlideshow.attrs(data);
+			var me = this;
 
-			var me = this,
-				numItems = attrs.state.imgs.length,
-				auto = attrs.state.auto,
-				time = attrs.state.time,
+			me.attrs = mSlideshow.attrs(data);
+
+			var numItems = me.attrs.state.imgs.length,
+				auto = me.attrs.state.auto,
+				time = me.attrs.state.time,
 				inter,
 				initAuto = function(){
 					stopAuto();
@@ -100,21 +93,29 @@ var mithrilSlideshowComponent = function(m){
 			}
 		},
 
-		view: function(ctrl, attrs) {
-			return m('div', {className: "mithril-slideshow", config: mSlideshow.config(ctrl, attrs)}, [
-				attrs.state.imgs.map(function(img, idx){
-					return m('figure', {className: (idx == ctrl.currentSlide()? "show": "")},[
-						m('img', {src: img.src}),
+		view: function(ctrl) {
+			
+			return m('div', {className: "mithril-slideshow", config: mSlideshow.config(ctrl, ctrl.attrs)}, [
+				ctrl.attrs.state.imgs.map(function(img, idx){
+					// return m('figure', {className: (idx == ctrl.currentSlide()? "show": "")},[
+					// 	m('img', {src: img.src}),
+					// 	(img.caption? m('figcaption', img.caption): undefined)
+					// ]);
+					return m('figure', {
+							className: (idx == ctrl.currentSlide()? "show": ""),
+							style: {"background-image": "url(" + img.src + ")"}
+						},[
+						//m('img', {src: img.src}),
 						(img.caption? m('figcaption', img.caption): undefined)
 					]);
 				}),
 
-				(attrs.state.showDots? m('div', {className: "dots"},
-					attrs.state.imgs.map(function(img, idx){
+				(ctrl.attrs.state.showDots? m('div', {className: "dots"},
+					ctrl.attrs.state.imgs.map(function(img, idx){
 						return m('span', {onclick: ctrl.setCurrentSlide(idx), className: "dot" + (idx == ctrl.currentSlide()? " current": "")}, m.trust("&#8226;"));
 					})
 				): undefined),
-				(attrs.state.showButtons? m('div', {className: "button-container"}, [
+				(ctrl.attrs.state.showButtons? m('div', {className: "button-container"}, [
 					m('span', {className: "prev", onclick: ctrl.prev}, m.trust("&laquo;")),
 					m('span', {className: "next", onclick: ctrl.next}, m.trust("&raquo;"))
 				]): undefined)

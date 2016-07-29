@@ -1,0 +1,20 @@
+.mithril-slideshow {position: relative;}
+.mithril-slideshow figure{position: absolute; top:0; opacity: 0; transition: 1s opacity; margin:0;text-align: center;}
+.mithril-slideshow figure.show{opacity: 1; position: relative;}
+
+.mithril-slideshow figure{width:  100%; height: 30rem; background-size: contain; background-position: center; background-repeat: no-repeat; }
+
+.mithril-slideshow figcaption{position: relative; font-family: sans-serif; font-size: .8em; bottom: .75em; right: .35em; padding: .25em; color: #fff; background: rgba(0,0,0, .25); border-radius: 2px; }
+.mithril-slideshow figcaption a{color: #fff; }
+
+.mithril-slideshow .button-container {position: absolute; top: 0; width:100%; height: 100%;}
+.mithril-slideshow .next,
+.mithril-slideshow .prev {color: #fff; position: relative; background: rgba(0,0,0, .6); top: 50%; z-index: 1; font-size: 2em; margin-top: -.75em; opacity: .3; user-select: none; }
+.mithril-slideshow .next:hover,
+.mithril-slideshow .prev:hover{cursor: pointer; opacity: 1; }
+.mithril-slideshow .next{float:right; padding: 10px 5px 15px 10px; border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.mithril-slideshow .prev{float:left; padding: 10px 10px 15px 5px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+
+.mithril-slideshow .dots {display: flex; align-items: center; justify-content: center;margin-top: -4%;font-size: 1.5rem} 
+.mithril-slideshow .dot {color: #ccc; opacity: 0.3; margin: 0.1rem; cursor: pointer;}
+.mithril-slideshow .dot.current {opacity: 0.9;}

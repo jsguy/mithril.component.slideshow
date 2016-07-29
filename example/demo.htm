@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mithril slideshow component</title>
+
+    <script src="../lib/mithril.js"></script>
+	<script src="../dist/mithril.component.slideshow.js"></script>
+
+	<style>
+		#example {width: 100%; height: 30rem;}
+		body {margin: 0; padding: 0; background: #111; height: 100%; }
+	</style>
+
+	<link rel="stylesheet" type="text/css" href="../dist/mithril.component.slideshow.css">
+</head>
+<body>
+
+<div id="example"></div>
+	
+<script>
+var Demo = {
+	view: function(ctrl) {
+		return m.components.mSlideshow({id: "sliders", state: {
+			imgs: [
+				{src: "img/uboat.jpg"},
+				{src: "img/bridge.jpg"}
+			]
+		}});
+	}
+};
+//initialize
+m.mount(document.getElementById("example"), Demo);
+</script>
+
+</body>
+</html>
