@@ -1,6 +1,6 @@
 {
   "name": "mithril.component.slideshow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mithril slideshow component",
   "main": "mithril.component.slideshow.js",
   "scripts": {

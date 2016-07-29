@@ -13,9 +13,9 @@ npm install mithril.component.slideshow
 First include mithril.js, and the js and css files:
 
 ```markup
-&lt;script src="lib/mithril.js"&gt;&lt;/script&gt;
-&lt;script src="dist/mithril.component.slideshow.js"&gt;&lt;/script&gt;
-&lt;link rel="stylesheet" type="text/css" href="dist/mithril.component.slideshow.css"&gt;
+<script src="lib/mithril.js"></script>
+<script src="dist/mithril.component.slideshow.js"></script>
+<link rel="stylesheet" type="text/css" href="dist/mithril.component.slideshow.css">
 ```
 
 Then in your view, simply initialise with the images you want to show, using the state:
