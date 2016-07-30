@@ -56,9 +56,11 @@ var mithrilSlideshowComponent = function(m){
 				initAuto = function(){
 					stopAuto();
 					//	Set a time to advance
-					inter = window.setInterval(function(){
-						me.next();
-					}, time);
+					if(typeof window != "undefined") {
+						inter = window.setInterval(function(){
+							me.next();
+						}, time);
+					}
 				},
 				stopAuto = function(){
 					clearInterval(inter);
