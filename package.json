@@ -1,8 +1,8 @@
 {
   "name": "mithril.component.slideshow",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Mithril slideshow component",
-  "main": "mithril.component.slideshow.js",
+  "main": "dist/mithril.component.slideshow.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
