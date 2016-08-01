@@ -1,5 +1,5 @@
 /*	
-	This creates google materials design lite mithril components
+	This creates a mithril slideshow component
 */
 ;(function(){
 
@@ -27,16 +27,18 @@ var mithrilSlideshowComponent = function(m){
 	        return function(element, isInitialized) {
 	            if(typeof Touchit !== 'undefined') {
 	                if (!isInitialized) {
-	                	//	Note: if testing in chrome, use the "Nexus 6P" profile
-						element.addEventListener('swipeleft',function(e){
-							ctrl.prev();
-						});
+	                	var imgsElement = element.getElementsByClassName("mithril-slideshow-images")[0];
 
-						element.addEventListener('swiperight',function(e){
+	                	//	Note: if testing in chrome, use the "Nexus 6P" profile
+						imgsElement.addEventListener('swipeleft',function(e){
 							ctrl.next();
 						});
 
-						new Touchit(element);
+						imgsElement.addEventListener('swiperight',function(e){
+							ctrl.prev();
+						});
+
+						new Touchit(imgsElement);
 	                }
 	            } else {
 	                console.warn('ERROR: You need touchit.js in the page');    
@@ -96,31 +98,28 @@ var mithrilSlideshowComponent = function(m){
 		},
 
 		view: function(ctrl) {
-			
 			return m('div', {className: "mithril-slideshow", config: mSlideshow.config(ctrl, ctrl.attrs)}, [
-				ctrl.attrs.state.imgs.map(function(img, idx){
-					// return m('figure', {className: (idx == ctrl.currentSlide()? "show": "")},[
-					// 	m('img', {src: img.src}),
-					// 	(img.caption? m('figcaption', img.caption): undefined)
-					// ]);
-					return m('figure', {
-							className: (idx == ctrl.currentSlide()? "show": ""),
-							style: {"background-image": "url(" + img.src + ")"}
-						},[
-						//m('img', {src: img.src}),
-						(img.caption? m('figcaption', img.caption): undefined)
-					]);
-				}),
+				m('div', {className: "mithril-slideshow-images"},
+					ctrl.attrs.state.imgs.map(function(img, idx){
+						return m('figure', {
+								className: (idx == ctrl.currentSlide()? "show": ""),
+								style: {"background-image": "url(" + img.src + ")"}
+							},[
+							(img.caption? m('figcaption', img.caption): undefined)
+						]);
+					})
+				),
 
 				(ctrl.attrs.state.showDots? m('div', {className: "dots"},
 					ctrl.attrs.state.imgs.map(function(img, idx){
 						return m('span', {onclick: ctrl.setCurrentSlide(idx), className: "dot" + (idx == ctrl.currentSlide()? " current": "")}, m.trust("&#8226;"));
 					})
 				): undefined),
-				(ctrl.attrs.state.showButtons? m('div', {className: "button-container"}, [
+
+				(ctrl.attrs.state.showButtons? [
 					m('span', {className: "prev", onclick: ctrl.prev}, m.trust("&laquo;")),
 					m('span', {className: "next", onclick: ctrl.next}, m.trust("&raquo;"))
-				]): undefined)
+				]: undefined)
 			]);
 		}
 	};
@@ -143,4 +142,4 @@ if (typeof module != "undefined" && module !== null && module.exports) {
 	mithrilSlideshowComponent(typeof window != "undefined"? window.m || {}: {});
 }
 
-}());
+}());;

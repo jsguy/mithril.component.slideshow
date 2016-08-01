@@ -3,7 +3,9 @@ module.exports = function(grunt) {
 	//	Concatenation file order
 	var concatFiles = [
 		'src/mithril.component.slideshow.js',
+		'src/start.js',
 		'lib/mithril.bindings.js',
+		'src/end.js',
 	    'lib/touchit.js'
 	];
 
@@ -35,7 +37,7 @@ module.exports = function(grunt) {
 		jshint: {
 			files: ['Gruntfile.js', 'src/**/*.js'],
 			options: {
-				ignores: [],
+				ignores: ['src/start.js', 'src/end.js'],
 				// options here to override JSHint defaults
 				globals: {
 					jQuery: true,
