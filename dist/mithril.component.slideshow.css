@@ -1,4 +1,4 @@
-.mithril-slideshow {position: relative;}
+.mithril-slideshow {position: relative; height: 30rem;}
 .mithril-slideshow figure{position: absolute; top:0; opacity: 0; transition: 1s opacity; margin:0;text-align: center;}
 .mithril-slideshow figure.show{opacity: 1; position: relative;}
 
@@ -14,6 +14,6 @@
 .mithril-slideshow .next{float:right; padding: 10px 5px 15px 10px; border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
 .mithril-slideshow .prev{float:left; padding: 10px 10px 15px 5px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
 
-.mithril-slideshow .dots {display: flex; align-items: center; justify-content: center;margin-top: -4%;font-size: 1.5rem} 
+.mithril-slideshow .dots {display: flex; align-items: center; justify-content: center;margin-top: -3rem;font-size: 1.5rem} 
 .mithril-slideshow .dot {color: #ccc; opacity: 0.3; margin: 0.1rem; cursor: pointer;}
 .mithril-slideshow .dot.current {opacity: 0.9;}
