@@ -18,14 +18,14 @@ First include mithril.js, and the js and css files:
 <link rel="stylesheet" type="text/css" href="dist/mithril.component.slideshow.css">
 ```
 
-Then in your view, simply initialise with the images you want to show, using the state:
+Then in your view, simply initialise with the images you want to show, as a property, using the state:
 
 ```javascript
 return m.components.mSlideshow({state: {
-	imgs: [
+	imgs: m.prop([
 		{src: "img/uboat.jpg"},
 		{src: "img/bridge.jpg"}
-	]
+	])
 }});
 ```
 

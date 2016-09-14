@@ -22,10 +22,10 @@
 var Demo = {
 	view: function(ctrl) {
 		return m.components.mSlideshow({id: "sliders", state: {
-			imgs: [
+			imgs: m.prop([
 				{src: "img/uboat.jpg"},
 				{src: "img/bridge.jpg"}
-			]
+			])
 		}});
 	}
 };

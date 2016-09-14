@@ -51,7 +51,7 @@ var mithrilSlideshowComponent = function(m){
 
 			me.attrs = mSlideshow.attrs(data);
 
-			var numItems = me.attrs.state.imgs.length,
+			var numItems = me.attrs.state.imgs().length,
 				auto = me.attrs.state.auto,
 				time = me.attrs.state.time,
 				inter,
@@ -100,7 +100,7 @@ var mithrilSlideshowComponent = function(m){
 		view: function(ctrl) {
 			return m('div', {className: "mithril-slideshow", config: mSlideshow.config(ctrl, ctrl.attrs)}, [
 				m('div', {className: "mithril-slideshow-images"},
-					ctrl.attrs.state.imgs.map(function(img, idx){
+					ctrl.attrs.state.imgs().map(function(img, idx){
 						return m('figure', {
 								className: (idx == ctrl.currentSlide()? "show": ""),
 								style: {"background-image": "url(" + img.src + ")"}
@@ -111,7 +111,7 @@ var mithrilSlideshowComponent = function(m){
 				),
 
 				(ctrl.attrs.state.showDots? m('div', {className: "dots"},
-					ctrl.attrs.state.imgs.map(function(img, idx){
+					ctrl.attrs.state.imgs().map(function(img, idx){
 						return m('span', {onclick: ctrl.setCurrentSlide(idx), className: "dot" + (idx == ctrl.currentSlide()? " current": "")}, m.trust("&#8226;"));
 					})
 				): undefined),
