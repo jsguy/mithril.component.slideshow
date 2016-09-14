@@ -51,8 +51,7 @@ var mithrilSlideshowComponent = function(m){
 
 			me.attrs = mSlideshow.attrs(data);
 
-			var numItems = me.attrs.state.imgs().length,
-				auto = me.attrs.state.auto,
+			var auto = me.attrs.state.auto,
 				time = me.attrs.state.time,
 				inter,
 				initAuto = function(){
@@ -72,7 +71,7 @@ var mithrilSlideshowComponent = function(m){
 
 			me.setCurrentSlide = function(idx){
 				return function(){
-					if(idx >= 0 && idx < numItems){
+					if(idx >= 0 && idx < me.attrs.state.imgs().length){
 						me.currentSlide(idx);
 					}
 				};
@@ -81,12 +80,12 @@ var mithrilSlideshowComponent = function(m){
 			me.prev = function(){
 				me.currentSlide(me.currentSlide() > 0? 
 					me.currentSlide() - 1:
-					numItems - 1
+					me.attrs.state.imgs().length - 1
 				);
 			};
 
 			me.next = function(){
-				me.currentSlide(me.currentSlide() < numItems -1? 
+				me.currentSlide(me.currentSlide() < me.attrs.state.imgs().length -1? 
 					me.currentSlide() + 1:
 					0
 				);
