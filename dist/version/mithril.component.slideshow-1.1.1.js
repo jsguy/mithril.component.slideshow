@@ -18,6 +18,7 @@ var mithrilSlideshowComponent = function(m){
 			attrs.state.showButtons = def(attrs.state.showButtons, true);
 			attrs.state.showDots = def(attrs.state.showDots, true);
 			attrs.state.time = def(attrs.state.time, 7000);
+			attrs.state.imgs = attrs.state.imgs || m.p([]);
 
 			return attrs;
 		},
@@ -96,10 +97,12 @@ var mithrilSlideshowComponent = function(m){
 			}
 		},
 
-		view: function(ctrl) {
-			return m('div', {className: "mithril-slideshow", config: mSlideshow.config(ctrl, ctrl.attrs)}, [
+		view: function(ctrl, args) {
+			var attrs = mSlideshow.attrs(args);
+
+			return m('div', {className: "mithril-slideshow", config: mSlideshow.config(ctrl, attrs)}, [
 				m('div', {className: "mithril-slideshow-images"},
-					ctrl.attrs.state.imgs().map(function(img, idx){
+					attrs.state.imgs().map(function(img, idx){
 						return m('figure', {
 								className: (idx == ctrl.currentSlide()? "show": ""),
 								style: {"background-image": "url(" + img.src + ")"}
@@ -109,13 +112,13 @@ var mithrilSlideshowComponent = function(m){
 					})
 				),
 
-				(ctrl.attrs.state.showDots? m('div', {className: "dots"},
-					ctrl.attrs.state.imgs().map(function(img, idx){
+				(attrs.state.showDots? m('div', {className: "dots"},
+					attrs.state.imgs().map(function(img, idx){
 						return m('span', {onclick: ctrl.setCurrentSlide(idx), className: "dot" + (idx == ctrl.currentSlide()? " current": "")}, m.trust("&#8226;"));
 					})
 				): undefined),
 
-				(ctrl.attrs.state.showButtons? [
+				(attrs.state.showButtons? [
 					m('span', {className: "prev", onclick: ctrl.prev}, m.trust("&laquo;")),
 					m('span', {className: "next", onclick: ctrl.next}, m.trust("&raquo;"))
 				]: undefined)
