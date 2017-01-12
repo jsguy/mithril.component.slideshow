@@ -4,11 +4,14 @@
 	<meta charset="UTF-8">
 	<title>Mithril slideshow component</title>
 
+	<script src="../lib/ulib.pubsub.js"></script>
     <script src="../lib/mithril.js"></script>
 	<script src="../src/mithril.component.slideshow.js"></script>
 	<script src="../lib/mithril.sugartags.js"></script>
 	<script src="../lib/mithril.bindings.js"></script>
     <script src="../lib/touchit.js"></script>
+
+	<script src="../../marble/dist/marble-latest.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="../dist/mithril.component.slideshow.css">
 
@@ -25,18 +28,57 @@
 <!-- Using this: https://codepen.io/leemark/pen/DLgbr as inspiration -->
 
 <div id="example"></div>
-	
+
+
+<script>
+var i360Decorator = function(img, idx, ctrl){
+	console.log('decorate...');
+
+/*
+	marble.init(document.getElementById('target'), {
+        img: 'pic.jpg'
+    });
+*/
+
+	return m('figure', {
+			className: (idx == ctrl.currentSlide()? "show": ""),
+			style: {"background-image": "url(" + img.src + ")"}
+		},[
+		(img.caption? m('figcaption', img.caption): undefined)
+	]);
+};
+</script>
+
+
 <script>
 var Demo = {
+	controller: function(){
+
+	},
 	view: function(ctrl) {
 		return m.components.mSlideshow({id: "sliders", state: {
 			imgs: m.prop([
+				{src: "img/hotel.jpg"},
+				{src: "img/revato_360.jpg", decorate: i360Decorator},
 				{src: "img/uboat.jpg"},
 				{src: "img/bridge.jpg"}
 			])
 			// ,auto: true,
-			// showButtons: false,
+			//,showButtons: false,
 			// showDots: true
+			,events: {
+
+				//	Ok, so we need to init a 360 photo here.
+				//
+				//	* Need a marble binding/component
+				//	* Ability to bind on-demand, ie: don't just create all 360 images on load..
+				//
+				//
+
+				beforeNext: [function(obj){
+					console.log('beforeNext', obj);
+				}, function(){console.log('f');}]
+			}
 		}});
 	}
 };
